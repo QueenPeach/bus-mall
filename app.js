@@ -24,7 +24,6 @@ for(var x = 0; x < productNames.length; x++) {
 console.log('product names:', productNames);
 
 
-
 // TODO: Don't forget to build your objects. How can you do this withough having to write 14 lines of `new Product(., ., .)`?
 
 var productRank = {
@@ -48,9 +47,6 @@ var productRank = {
       allProducts[duplicate[i]].timesShown++;
     }
   },
-
-
-
 
   tallyClicks: function(elementId) {
     // TODO: Hmm... what's going to happen here?
