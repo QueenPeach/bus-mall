@@ -2,7 +2,7 @@
 
 var allProducts = [];
 
-var productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'sweepers', 'tauntaun', 'unicorn', 'usb',
+var productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweepers', 'tauntaun', 'unicorn', 'usb',
   'water-can', 'wine-glass'];
 
 function Product(name) {
@@ -32,6 +32,18 @@ var tracker = {
     return Math.floor(Math.random() * allProducts.length);
   },
 
+  render: function() {
+    var resultsEl = document.getElementById('results');
+    var listEl = document.createElement('ul');
+    listEl.textContent = 'Results';
+    resultsEl.appendChild(listEl);
+    for(var x = 0; x < allProducts.length; x++) {
+      listEl = document.createElement('li');
+      listEl.textContent = allProducts[x].votes + ' votes for ' + allProducts[x].name;
+      resultsEl.appendChild(listEl);
+    }
+  },
+
   displayImages: function() {
     var idOne = this.getRandomIndex();
     var idTwo = this.getRandomIndex();
@@ -58,115 +70,30 @@ var tracker = {
   onClick: function(event) {
     console.log(event.target);
 
-    if(event.target.id === 'images') {
-      console.log('didn\'t click an image');
-      return;
-    } else {
-      tracker.clickCount++;
 
-      for(var i in allProducts) {
-        if(event.target.id === allProducts[i].name) {
-          allProducts[i].votes++;
+    if (tracker.clickCount <15){
+      if(event.target.id === 'images') {
+        console.log('didn\'t click an image');
+        return;
+      } else {
+        tracker.clickCount++;
+
+        for(var i in allProducts) {
+          if(event.target.id === allProducts[i].name) {
+            allProducts[i].votes++;
+          }
         }
+
+        tracker.displayImages();
       }
-
-
-      tracker.displayImages();
+    } else {
+      if (tracker.clickCount === 15) {
+        tracker.render();
+        tracker.imagesEl.removeEventListener('click', tracker.onClick);
+      }
     }
   }
 };
 
 tracker.imagesEl.addEventListener('click', tracker.onClick);
 tracker.displayImages();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var allProducts = [];
-//
-// var productNames = ['bag', 'boots', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb',
-//   'water-can', 'wine-glass'];
-//
-// // You just had to make us use this many pictures...
-//
-//
-// function Product(name, path) {
-//   this.name = name,
-//   this.path = path,
-//   this.clicked = 0;
-//   this.viewed = 0;
-//   allProducts.push(this);
-// }
-// // TODO: Build your constructor and necessary properties.
-//
-// for(var x = 0; x < productNames.length; x++) {
-//   new Product(productNames[x], 'img/' + productNames[x] + '.jpg');
-// }
-//
-// console.log('product names:', productNames);
-//
-//
-// // TODO: Don't forget to build your objects. How can you do this withough having to write 14 lines of `new Product(., ., .)`?
-//
-// var productRank = {
-//   // TODO: All the properties of the object! What do you think you need? Try to write one piece at a time and make sure it does what you want before writing a little more.
-//   // NOTE: A-C-P reminder... Make very intentional and iterative changes to your code, and then A-C-P.
-//
-//   getRandomIndex: function(max) {
-//     return Math.round(Math.random() * (max - 0)) + 0;
-//   },
-//
-//   displayImages: function() {
-//     var picture =  document.getElementsByClassName('threeImg');
-//     var duplicate = [-1, -1, -1];
-//
-//     while(duplicate[0] === duplicate[1] || duplicate[0] === duplicate[2] || duplicate[1] === duplicate[2]) {
-//       duplicate = [productRank.getRandomIndex(allProducts.length), productRank.getRandomIndex(allProducts.length), productRank.getRandomIndex(allProducts.length)];
-//     }
-//
-//     for(var i = 0; i < 3; i++) {
-//       picture[i].src = allProducts[duplicate[i]].path;
-//       allProducts[duplicate[i]].timesShown++;
-//     }
-//   },
-//
-//   tallyClicks: function(elementId) {
-//     // TODO: Hmm... what's going to happen here?
-//   },
-//
-//   displayResults: function() {
-//     // TODO: Hmm... what's going to happen here?
-//   },
-//
-//   showButton: function() {
-//     // TODO: Hmm... what's going to happen here?
-//   },
-//
-//   onClick: function() {
-//     // TODO: Hmm... what's going to happen here?
-//   },
-// };
-//
-// // productRank.imageEls.addEventListener('click', productRank.onClick);
-// productRank.displayImages();
