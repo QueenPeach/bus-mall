@@ -69,6 +69,7 @@ var tracker = {
       tracker.displayImages();
     }
     if (tracker.clickCount === 25) {
+      tracker.localStorageOne();
       var ctx = document.getElementById('myChart').getContext('2d');
       var optionTypes = {
         type: 'bar',
@@ -147,9 +148,21 @@ var tracker = {
       console.log('stuff', myChart);
       tracker.imagesEl.removeEventListener('click', tracker.onClick);
     }
-  }
+  },
+  localStorageOne: function() {
+    localStorage.clear();
+    var encode = JSON.stringify(allProducts);
+    localStorage.setItem('AllProducts',encode);
+  },
+  localStorageTwo: function() {
+    var jr = JSON.parse(localStorage.getItem('AllProducts'));
+    if (jr !== null) {
+      allProducts = jr;
+    }
+  },
 };
 
 
 tracker.imagesEl.addEventListener('click', tracker.onClick);
 tracker.displayImages();
+tracker.localStorageTwo();
