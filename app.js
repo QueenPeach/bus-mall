@@ -71,6 +71,8 @@ var tracker = {
     if (tracker.clickCount === 25) {
       tracker.localStorageOne();
       var ctx = document.getElementById('myChart').getContext('2d');
+      ctx.canvas.width = 150;
+      ctx.canvas.height = 150;
       var optionTypes = {
         type: 'bar',
         data: {
