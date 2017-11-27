@@ -1,0 +1,43 @@
+header {
+
+  background-color: #9B9492;
+}
+
+
+h1 {
+
+  font-family: 'Fugaz One', cursive;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 3px gray;
+  font-size: 300%;
+}
+
+.topnav {
+
+  position: absolute;
+  font-size: 150%;
+  text-align: center;
+  font-family: 'Fugaz One', cursive;
+  margin-top: -65px;
+  margin-left: 15px;
+  text-shadow: 2px 2px 3px gray;
+
+}
+
+body {
+
+  background-color: #B9B9B9;
+}
+
+#images {
+
+  position: absolute;
+  margin-left: 200px;
+  border: 3px solid #9B9492;
+}
+
+#myChart {
+
+  position: absolute;
+}
